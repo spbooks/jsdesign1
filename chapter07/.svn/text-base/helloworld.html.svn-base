@@ -1,0 +1,27 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"	"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Hello World!</title>
+<script src="http://www.google.com/jsapi?key=[YOUR API KEY]"
+  type="text/javascript">
+</script>
+<script type="text/javascript">
+google.load('maps', '2'); // Load version 2 of the Maps API
+
+function showMap() {
+	var gmap = new google.maps.Map2(document.getElementById('gmap'));
+	// Center on England, zoom level 5
+	var uk = new google.maps.LatLng(53.6967, -3.2080);
+	gmap.setCenter(uk, 5);
+	// Show an info window attached to Brighton
+	var brighton = new google.maps.LatLng(50.8268, -0.1394);
+	gmap.openInfoWindow(brighton, document.createTextNode("Brighton"));
+}
+
+google.setOnLoadCallback(showMap);
+</script>
+</head>
+<body>
+	<div id="gmap" style="width: 500px; height: 300px"></div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+
+	<title>Underground II.1</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+
+
+	<!-- core stylesheets and scripts -->
+	<link rel="stylesheet" type="text/css" href="styles/underground.css" media="screen, projection" />
+	<script type="text/javascript" src="scripts/tools.js"></script>
+	<script type="text/javascript" src="scripts/config.js"></script>
+	<script type="text/javascript" src="scripts/underground.js"></script>
+
+
+	<!--- addon stylesheets and scripts -->
+	<link rel="stylesheet" type="text/css" href="addons/demogame.css" media="screen, projection" />
+	<script type="text/javascript" src="addons/demogame.js"></script>
+
+
+</head>
+
+<body>
+
+	<h1>Underground <abbr title="2.1">II.1</abbr></h1>
+
+
+	<!-- the main dungeon view -->
+	<div id="frame">
+		<div id="dungeon"></div>
+		<blockquote id="caption">
+			<p id="captiontext"></p>
+		</blockquote>
+	</div>
+
+
+
+	<!-- the map view -->
+	<map>
+		<div id="map">
+			<span class="player" id="you"></span>
+		</div>
+	</map>
+
+
+
+
+	<!-- the controller form -->
+	<form id="controller" action="">
+
+		<fieldset id="group-playercontrols">
+
+			<fieldset>
+				<legend><span>Player controls</span></legend>
+				<div>
+					<input type="image" id="move-left" title="Strafe Left (Shift + Left Arrow)"
+						src="images/arrow-moveleft.png" alt="Strafe Left" />
+					<input type="image" id="turn-left" title="Turn Left (Left Arrow)"
+						src="images/arrow-turnleft.png" alt="Turn Left" />
+					<input type="image" id="move-forward" title="Move Forward (Up Arrow)"
+						src="images/arrow-moveforward.png" alt="Move Forward" />
+					<input type="image" id="turn-right" title="Turn Right (Right Arrow)"
+						src="images/arrow-turnright.png" alt="Turn Right" />
+					<input type="image" id="move-right" title="Strafe Right (Shift + Right Arrow)"
+						src="images/arrow-moveright.png" alt="Strafe Right" />
+				</div>
+				<div>
+					<input type="image" id="move-back" title="Move Back (Down Arrow)"
+						src="images/arrow-moveback.png" alt="Move Back" />
+					<input type="image" id="turn-around" title="Turn Around (Shift + Down Arrow)"
+						src="images/arrow-turnaround.png" alt="Turn Around" />
+				</div>
+			</fieldset>
+
+		</fieldset>
+
+		<!-- *** DEV CONTROLS *** -->
+		<fieldset id="group-dungeonview">
+
+			<fieldset>
+				<legend><span>Developer controls</span></legend>
+				<div>
+					<label for="xposition">
+						<span>x</span>
+						<select id="xposition" name="x">
+						</select>
+					</label>
+					<label for="yposition">
+						<span>y</span>
+						<select id="yposition" name="y">
+						</select>
+					</label>
+					<label for="direction">
+						<span>dir</span>
+						<select id="direction" name="dir">
+							<option value="0">N</option>
+							<option value="1">E</option>
+							<option value="2">S</option>
+							<option value="3">W</option>
+						</select>
+					</label>
+					<input type="button" id="apply" value="Apply" />
+					<input type="button" id="reset" value="Reset" />
+				</div>
+			</fieldset>
+
+		</fieldset>
+
+
+	</form>
+
+
+
+	<!-- initialization script -->
+	<script type="text/javascript" src="init.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html dir="ltr" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+	<title>Displaying JSON</title>
+	<link rel="stylesheet" href="deliciousbadge.css">
+</head>
+<body>
+<script src="http://del.icio.us/feeds/json/codepo8/"></script>
+<script>
+  var out = '<ul>';
+  for(var i=0;Delicious.posts[i];i++){
+    out += '<li><a href="' + Delicious.posts[i].u + '">' + 
+           Delicious.posts[i].d + '</a></li>';
+  }
+  out += '</ul>';
+  document.write(out);
+</script>
+
+</body>
+</html>

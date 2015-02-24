@@ -1,0 +1,268 @@
+
+
+/* core canvas styles and resets */
+*
+{
+	margin:0;
+	padding:0;
+}
+html, body
+{
+	font:normal normal normal 100% trebuchet, "trebuchet ms", sans-serif;
+	background:#eee;
+	color:#222;
+}
+
+body
+{
+	font-size:0.8em;
+	padding:10px;
+}
+
+
+
+/* meta heading */
+h1
+{
+	position:absolute;
+	left:-10000px;
+}
+
+
+
+
+
+
+/* viewer element dimensions that are closely inter-related */
+#frame, #dungeon, .column
+{
+	width:600px;
+	height:400px;
+}
+
+#dungeon
+{
+	top:200px;
+	clip:rect(-200px, 600px, 200px, 0);
+	margin-top:-20px; /* horizon shift */
+}
+
+.column
+{
+	top:-200px;
+	margin:0 0 -200px 0;
+}
+
+#frame
+{
+	border:3px inset black;
+}
+
+#controller
+{
+	width:606px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* outer frame element */
+#frame
+{
+	float:left;
+	position:relative;
+	overflow:hidden;
+	background:url(../images/sky.png) skyblue;
+}
+
+
+/* inner dungeon view */
+#dungeon
+{
+	position:relative;
+	left:0;
+	background:url(../images/grass.png) #696; 
+}
+
+
+/* view columns */
+.column
+{
+	position:relative;
+}
+.column.L
+{
+	float:left;
+}
+.column.R
+{
+	float:right;
+}
+
+.column.C
+{
+	position:absolute;
+	left:0;
+	
+	width:100%;
+}
+
+
+/* vertical bricks within view columns */
+.brick
+{
+	position:relative;
+	display:block;
+	width:100%;
+}
+
+.brick span
+{
+	display:block;
+	position:absolute;
+	width:0;
+	height:0;
+	border:0 solid transparent;
+}
+
+
+
+
+
+
+
+
+/* local view map */
+#map
+{
+	float:left;
+	display:block;
+	position:relative;
+	width:96px;
+	height:224px;
+	margin:0 0 10px 10px;
+	border:2px groove #000;
+	background:#696; 
+}
+
+#map span
+{
+	float:left;
+	display:block;
+	position:relative;
+	z-index:1;
+	width:16px;
+	height:14px;
+}
+
+#map span#you
+{
+	position:absolute;
+	left:32px;
+	bottom:0;
+	z-index:3;
+	width:20px;
+	height:16px;
+	border:6px double #ff9;
+}
+
+
+
+
+
+
+
+/* descriptive caption */
+#caption
+{
+	position:absolute;
+	bottom:0;
+	left:0;
+	width:100%;
+	opacity:0.9;
+}
+
+#captiontext
+{
+	margin:0.5%;
+	padding:5px 7px 7px 7px;
+	font:normal normal normal 1em/130% verdana,sans-serif;
+	background:#111;
+	color:#eee;
+	border:1px solid #999;
+	border-color:#999 #666 #666 #999;
+}
+
+
+
+
+
+/* controller form */
+#controller
+{
+	float:left;
+	margin:10px 0 0 0;
+	padding:0;
+}
+
+#controller fieldset
+{
+	position:relative;
+	margin:0;
+	padding:0;
+	border:none;
+	background:#fff;
+	text-align:center;
+}
+
+#controller fieldset#group-dungeonview
+{
+	float:left;
+	width:49%;
+}
+
+#controller fieldset#group-playercontrols
+{
+	float:right;
+	width:49%;
+}
+
+#controller > fieldset
+{
+	border:2px groove #999;
+	background:#eee;
+}
+
+#controller > fieldset > fieldset > div
+{
+	padding:2.7em 10px 10px 10px;
+}
+
+#controller > fieldset > fieldset > div + div
+{
+	padding-top:0;
+}
+
+#controller legend span
+{
+	display:block;
+	position:absolute;
+	left:0;
+	top:0;
+	width:100%;
+	padding:4px 0;
+	text-align:center;
+	background:#aaa;
+	border-bottom:2px ridge #999;
+}
+

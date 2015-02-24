@@ -1,0 +1,53 @@
+*{
+	margin:0;
+	padding:0;
+}
+body{
+	font-family:arial,sans-serif;
+	font-size:1em;
+	color:#000;
+	background:#fff;
+	padding:2em;
+}
+#delicious{
+	padding:.2em;
+	padding-left:15px;
+	background:url(delicious.gif) left center no-repeat;
+	color:#369;
+}	
+#delicious span{
+	color:#666;
+	font-weight:bold;
+	font-size:.8em;
+}
+#deliciouslist{
+	margin:5px 5px 5px 15px;
+	font-size:.8em;
+}
+#deliciouslist li{
+	line-height:1.3em;
+	padding-bottom:.2em;
+	color:#ccc;
+	list-style:square;
+}
+#deliciouslist li a{
+	color:#333;
+}
+#content ul{
+	margin:1em 1.5em;
+}
+#content li{
+	list-type:square;
+	padding:.2em 0;
+}
+#content p{
+	padding:0 0 .5em 0;
+}
+a{
+	color:#369;
+}
+h1{
+	font-family:georgia,times,serif;
+	color:#036;
+	padding:1em 0;
+}

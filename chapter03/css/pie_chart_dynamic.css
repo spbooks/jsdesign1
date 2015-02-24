@@ -1,0 +1,42 @@
+
+/* CONTENT ------------------------------------------------------------------ */
+
+#chartContainer
+{
+	width: 720px;
+	margin: 0 auto;
+	text-align: left;
+}
+
+form
+{
+	display: inline;
+	float: left;
+	width: 303px;
+	margin: 95px 0 0 0;
+}
+
+.sliderContainer
+{
+	width: 303px;
+	height: 35px;
+	background-image: url(../images/slider_scale.jpg);
+	background-repeat: no-repeat;
+	background-position: 3px 8px;
+}
+
+.sliderWidget
+{
+	position: relative;
+	width: 29px;
+	height: 35px;
+	background-image: url(../images/slider_knob.gif);
+	background-repeat: no-repeat;
+	cursor: move;
+}
+
+canvas
+{
+	display: inline;
+	float: right;
+}

@@ -1,0 +1,190 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+	"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>My Flickr photos, on an interactive map!</title>
+<script
+	src="http://www.google.com/jsapi?key=[YOUR API KEY]" 
+	type="text/javascript">
+</script>
+<script type="text/javascript">
+google.load('maps', '2'); // Load version 2 of the Maps API
+function showMap() {
+	window.gmap = new google.maps.Map2(document.getElementById('gmap'));
+	// Center on England, zoom level 5
+	gmap.setCenter(new google.maps.LatLng(53.6967, -3.2080), 5);
+	gmap.setMapType(google.maps.SATELLITE_MAP);
+	// Add controls
+	gmap.addControl(new google.maps.LargeMapControl());
+	gmap.addControl(new google.maps.MapTypeControl());
+}
+function jsonFlickrFeed(json) {
+	// Assign to a global variable
+	window.jsonFromFlickr = json;
+}
+</script>
+<script type="text/javascript" src="http://api.flickr.com/services/feeds/geo/?id=35034346572@N01&amp;format=json"></script>
+<script type="text/javascript">
+function showPhotos() {
+	if (!jsonFromFlickr) {
+	  alert('Flickr photos failed to load');
+	  return;
+	}
+	// 'Empty' the ul by removing all of its children
+	var ul = document.getElementById('photos');
+	while (ul.hasChildNodes()) {
+	  ul.removeChild(ul.firstChild);
+	}
+	// For calculating center of all points later
+	var bounds = new google.maps.LatLngBounds();
+	// Loop over the photos and display them all
+	for (var i = 0, photo; photo = jsonFromFlickr.items[i]; i++) {
+	  var li = document.createElement('li');
+	  var a = document.createElement('a');
+	  a.href = photo.link;
+	  var img = document.createElement('img');
+	  img.src = photo.media.m.replace('_m', '_s');
+	  img.title = photo.title;
+	  img.alt = photo.title;
+	  a.appendChild(img);
+	  li.appendChild(a);
+	  // Add to the ul
+	  ul.appendChild(li);
+	  // Add a marker to the map at the correct point
+	  var point = new google.maps.LatLng(photo.latitude, photo.longitude);
+	  bounds.extend(point);
+	  photo.marker = new google.maps.Marker(point);
+	  gmap.addOverlay(photo.marker);
+	  // Hook up the link click event
+	  google.maps.Event.addDomListener(
+	    a, 'click', makeClickCallback(photo)
+	  );
+	  // Hook up the marker click event
+	  google.maps.Event.addListener(
+	    photo.marker, 'click', makeClickCallback(photo)
+	  );
+	}
+	// Center the map to show our points
+	gmap.setZoom(gmap.getBoundsZoomLevel(bounds));
+	gmap.setCenter(bounds.getCenter());
+}
+
+function buildInfoWindow(photo) {
+	var div = document.createElement('div');
+	div.className = 'infoBox';
+	div.innerHTML = [
+	  '<h4>', photo.title, '</h4>',
+	  '<img src="', photo.media.m.replace('_m', '_t'),
+	  '" alt="', photo.title, '">',
+	  '<a href="#">zoom in</a><br>',
+	  '<a href="', photo.link, '">photo page</a>'
+	].join('');
+	// Add event listener
+	var link = div.getElementsByTagName('a')[0];
+	google.maps.Event.addDomListener(
+	  link, 'click', makeZoomCallback(photo)
+	);
+	return div;
+}
+
+function stopEvent(ev) {
+	ev = ev || window.event;
+	if (ev) {
+	  if (ev.preventDefault) {
+	    ev.preventDefault()
+	  } else {
+	    ev.returnValue = false;
+	  }
+	}
+}
+
+function makeClickCallback(photo) { 
+	return function(ev) {
+	  stopEvent(ev);
+	  photo.marker.openInfoWindow(buildInfoWindow(photo));
+	  highlightPhoto(photo);
+	}
+}
+
+function makeZoomCallback(photo) {
+	// Creates a callback function that zooms the map to that photo
+	return function(ev) {
+	  stopEvent(ev);
+	  gmap.setCenter(new google.maps.LatLng(
+	    photo.latitude, photo.longitude
+	  ), 14);
+	  photo.marker.openInfoWindow(buildInfoWindow(photo));
+	  highlightPhoto(photo);
+	}
+}
+
+function highlightPhoto(photo) {
+	var ul = document.getElementById('photos');
+	var links = ul.getElementsByTagName('a');
+	for (var i = 0, a; a = links[i]; i++) {
+	  var img = a.getElementsByTagName('img')[0];
+	  if (a.href == photo.link) {
+	    img.style.opacity = 1;
+	    img.style.filter = 'alpha(opacity=100)';
+	  } else {
+	    img.style.opacity = 0.4;
+	    img.style.filter = 'alpha(opacity=40)';
+	  }
+	}
+}
+
+google.setOnLoadCallback(function() {
+	showMap();
+	showPhotos();	
+});
+</script>
+<style type="text/css">
+ul#photos li, ul#photos img {
+	display: block;
+	margin: 0;
+	padding: 0;
+	border: none;
+	float: left;
+	width: 75px;
+	height: 75px;
+}
+ul#photos {
+	width: 375px; /* 75 * 5 */
+	position: absolute;
+	top: 0;
+	left: 375px;
+	margin: 0;
+	padding: 0;
+}
+div#gmap {
+	width: 375px;
+	height: 300px;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+div.infoBox {
+	height: 130px; /* Ensure room for 100px high thumbnail + h4 title */
+	width: 230px; /* Needs a width or IE breaks */
+	font-family: helvetica, arial, sans-serif;
+}
+div.infoBox img {
+	float: left;
+	margin-right: 5px;
+}
+div.infoBox h4 {
+	margin: 0 0 5px 0;
+}
+div.infoBox a {
+	font-size: 0.9em;
+	color: #666;
+}
+</style>
+</head>
+<body>
+	<div id="gmap"></div>
+	<ul id="photos">
+	  <li><a href="http://www.flickr.com/photos/simon/">My Flickr photos</a></li>
+	</ul>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+
+	<title>Floor Plan Designer for Underground II.1</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+
+
+	<!-- core stylesheets and scripts -->
+	<link rel="stylesheet" type="text/css" href="styles/designer.css" media="screen, projection" />
+	<script type="text/javascript" src="scripts/tools.js"></script>
+	<script type="text/javascript" src="scripts/config.js"></script>
+	<script type="text/javascript" src="scripts/designer.js"></script>
+
+
+</head>
+
+<body>
+
+	<h1>Floor Plan Designer for Underground <abbr title="2">II</abbr></h1>
+
+
+	<div id="frame">
+		<table id="floorplan" border="1" cellpadding="0" cellspacing="0"
+			summary="This table creates a a two-dimensional map that represents a dungeon floor plan">
+
+		</table>
+	</div>
+
+
+	<form id="dataform" action="">
+		<fieldset class="size">
+			<label for="floorsize-y">
+				<span>Rows: </span>
+				<input type="text" name="floorsize-y" value="" />
+			</label>
+			<label for="floorsize-x">
+				<span>Cols: </span>
+				<input type="text" name="floorsize-x" value="" />
+			</label>
+			<input type="button" id="floorsize-update" value="Update" />
+		</fieldset>
+		<fieldset class="io">
+			<input type="reset" value="Display input matrix" />
+			<input type="submit" value="Generate output matrix" />
+			<textarea name="data" rows="10" cols="30"></textarea>
+		</fieldset>
+	</form>
+
+
+
+	<!-- initialization script -->
+	<script type="text/javascript">
+	new FloorplanDesigner();
+	</script>
+
+</body>
+</html>

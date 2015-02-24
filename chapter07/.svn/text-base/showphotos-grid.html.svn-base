@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+	"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>My Flickr Photos, in a grid</title>
+<script type="text/javascript">
+function jsonFlickrFeed(json) {
+	// Assign to a global variable
+	window.jsonFromFlickr = json;
+}
+</script>
+<script type="text/javascript" src="http://api.flickr.com/services/feeds/photos_public.gne?id=35034346572@N01&amp;format=json">
+</script>
+<script type="text/javascript">
+function makePhoto(photo) {
+	var li = document.createElement('li');
+	var a = document.createElement('a');
+	a.href = photo.link;
+	var img = document.createElement('img');
+	img.src = photo.media.m.replace('_m', '_s');
+	img.title = photo.title;
+	img.alt = photo.alt;
+	a.appendChild(img);
+	li.appendChild(a);
+	return li;
+}
+
+function showPhotos() {
+	if (!jsonFromFlickr) {
+	  alert('Flickr photos failed to load');
+	}
+	// 'Empty' the ul by removing all of its children
+	var ul = document.getElementById('photos');
+	while (ul.hasChildNodes()) {
+	  ul.removeChild(ul.firstChild);
+	}
+	// Loop over the photos and display them all
+	for (var i = 0, photo; photo = jsonFromFlickr.items[i]; i++) {
+	  ul.appendChild(makePhoto(photo));
+	}
+}
+
+window.onload = showPhotos;
+</script>
+<style type="text/css">
+ul#photos, ul#photos li, ul#photos img {
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: none;
+  float: left;
+}
+ul#photos {
+  width: 375px; /* 75 * 5 */
+}
+</style>
+</head>
+<body>
+<ul id="photos">
+	<li><a href="http://www.flickr.com/photos/simon/">My Flickr photos</a></li>
+</ul>
+</body>
+</html>

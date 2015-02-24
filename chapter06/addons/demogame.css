@@ -1,0 +1,26 @@
+
+
+/* found object */
+#foundobject
+{
+	position:absolute;
+	left:0;
+	top:0;
+	z-index:32000;
+	background:#226;
+	border:2px solid #eee;
+	border-color:#fff #bbb #bbb #fff;
+	padding:10px 15px;
+	color:#eee;
+	font-size:1.2em;
+	font-weight:bold;
+	visibility:hidden;
+}
+
+/* caption text additional message */
+#captiontext strong
+{
+	display:block;
+	margin-top:5px;
+}
+
